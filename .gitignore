@@ -1,0 +1,20 @@
+# Ignore notebook files
+notebook/*.txt
+
+# Ignore Python bytecode files
+*.pyc
+
+# Ignore virtual environment files
+env/
+
+# Ignore IDE files
+.vscode/
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+ 
+
+#ignore .history and .env 
+.history
+.env
