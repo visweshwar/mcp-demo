@@ -1,3 +1,18 @@
+# Prerequisites
+
+1. Have Python 3.10 or higher installed
+1. Preferably having uv installed
+    1. Steps to install uv https://docs.astral.sh/uv/getting-started/installation/
+1. Use node 22+ NPM 10.0.0 or higher
+    1. Steps to install NPM https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+ 1. Install a MCP Client
+    1. Claude Desktop: https://claude.ai/download
+    1. Continue on VSCode:[Link for Continue on VSCode](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
+    1. Cursor: [Link for Cursor MCP Instructions](https://docs.cursor.com/context/model-context-protocol)
+
+
+
+
 
 # Local MCP Server
 
@@ -70,3 +85,20 @@ npx @modelcontextprotocol/inspector -e KEY=$VALUE -- node build/index.js -e serv
 
 ### Use MCP Inspector with other MCP Servers
  npx -y @modelcontextprotocol/inspector npx  @modelcontextprotocol/server-filesystem arg1 agr2
+
+# Using MCP COnfiguration files 
+ 
+
+The `mcp-config` folder contains configuration files necessary to set up and run MCP (Model Context Protocol) servers for various environments. Here are the steps to utilize these configuration files effectively:
+
+### Step 1: Locate the MCP Configuration Files
+
+Navigate to the `mcp-config` folder in your project directory. Inside, you will find JSON configuration files for different setups, such as:
+
+- `claude_desktop_config.json` for Claude Desktop setup.
+- `config.yaml` for continue VS Code Extension setup.
+
+### Step 2: Edit Configuration Files
+
+Before using the configuration files, you might need to edit them to match your local or deployment environments. For example, in `claude_desktop_config.json` or `config.yaml`, replace placeholders such as `<path to your Python executable>`, `<your Azure OpenAI API key>`, and others with actual values relevant to your setup.
+ 
