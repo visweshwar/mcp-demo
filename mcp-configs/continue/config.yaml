@@ -1,0 +1,29 @@
+
+mcpServers: 
+
+ 
+  - name: Filesystem
+    command: npx
+    args:
+      - "-y"
+      -  "@modelcontextprotocol/server-filesystem"
+      - "<your local folder path>" 
+  
+  - name: Git
+    command: uvx
+    args:
+      - "mcp-server-git"
+      - "--repository"
+      - "<Your local git repo>"
+ 
+  - name: paychex-mcp
+    command:  "<path to your Python executable>"
+    
+    args:
+      - "<path to your paychex-mcp.py>/paychex-mcp.py"
+    env:
+      AZURE_OPENAI_API_KEY: "<Your Azure OpenAI API Key>"
+      AZURE_OPENAI_ENDPOINT: "<Your Azure OpenAI Endpoint>"
+      AZURE_OPENAI_EMBEDDING_DEPLOYMENT: "<Your Azure OpenAI embedding deployment>"
+      AZURE_OPENAI_DEPLOYMENT: "<Your Azure OpenAI deployment>"
+      AZURE_OPENAI_EMBEDDING_VERSION: "<Your Azure OpenAI embedding version>" 

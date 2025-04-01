@@ -20,5 +20,3 @@ Thumbs.db
 .env
 local.md
 notebook/llms_full.txt
-notebook/sklearn_vectorstore.parquet
-notebook/sklearn_vectorstore.parquet

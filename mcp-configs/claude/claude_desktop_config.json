@@ -1,0 +1,34 @@
+{
+    "mcpServers": {
+        "paychex-mcp": {
+            "command": "<path to your Python executable>/.venv/bin/python",
+            "args": [
+                "<path to your paychex-mcp.py>/paychex-mcp.py"
+            ],
+            "env": {
+                "AZURE_OPENAI_API_KEY": "<your Azure OpenAI API key>",
+                "AZURE_OPENAI_ENDPOINT": "<your Azure OpenAI endpoint>",
+                "AZURE_OPENAI_EMBEDDING_DEPLOYMENT": "<your Azure OpenAI embedding deployment>",
+                "AZURE_OPENAI_DEPLOYMENT": "<your Azure OpenAI deployment>",
+                "AZURE_OPENAI_EMBEDDING_VERSION": "<your Azure OpenAI embedding version>"
+            }
+        },
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "<path to your local file system>"
+            ]
+        },
+        "git": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-git",
+                "--repository",
+                "<your git project on your local file system>"
+            ]
+        }
+
+    }
+}
