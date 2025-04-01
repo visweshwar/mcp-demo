@@ -1,5 +1,5 @@
 # Ignore notebook files
-notebook/*.txt
+notebook/llm_full.txt
 
 # Ignore Python bytecode files
 *.pyc
@@ -18,3 +18,7 @@ Thumbs.db
 #ignore .history and .env 
 .history
 .env
+local.md
+notebook/llms_full.txt
+notebook/sklearn_vectorstore.parquet
+notebook/sklearn_vectorstore.parquet

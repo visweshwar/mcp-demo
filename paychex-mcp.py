@@ -3,14 +3,17 @@ from mcp.server.fastmcp import FastMCP
 from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.vectorstores import SKLearnVectorStore
 import os
+import truststore
+truststore.inject_into_ssl()
 
 # Define common path to the repo locally
-PATH = "/Users/visweshwarganesh/Development/MCP/paychex_docs_mcp_tool/notebook/"
-
+#PATH = "/Users/vganesh/Git/AI/MCP/mcp-demo/notebook/"
+PATH = "<PATH_TO_YOUR_REPO>/mcp-demo/notebook/"
 # Create an MCP server
 mcp = FastMCP("Paychex-Docs-MCP-Server")
 
 # Add a tool to query the Paychex documentation
+mcp.description = "Paychex documentation query tool"
 @mcp.tool()
 def paychex_query_tool(query: str):
     """

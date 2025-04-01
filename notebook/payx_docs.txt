@@ -1,0 +1,53 @@
+# MCP Server Resources for Paychex Documentation
+# Last updated: 2025-04-01
+# Format: Each resource is declared with a unique identifier, a display name, a type, and a URL.
+
+resource_id: developer_resources
+display_name: Paychex API Developer Resources
+type: text/html
+url: https://developer.paychex.com/documentation
+
+resource_id: onboarding_guide
+display_name: Streamlining the Onboarding Process for New Employees
+type: text/html
+url: https://www.paychex.com/articles/human-resources/streamline-new-employee-onboarding-process
+
+resource_id: api_developer_center
+display_name: Paychex API Developer Center
+type: text/html
+url: https://developer.paychex.com/
+
+resource_id: employee_onboarding_software
+display_name: Paychex Employee Onboarding Software
+type: text/html
+url: https://www.paychex.com/hiring/employee-onboarding-software
+
+resource_id: api_use_cases
+display_name: Paychex API Use Cases
+type: text/html
+url: https://developer.paychex.com/use_cases
+
+resource_id: new_hire_checklist
+display_name: New Hire Checklist to Help Streamline the Onboarding Process
+type: text/html
+url: https://www.paychex.com/articles/human-resources/new-hire-checklist-streamline-onboarding-process
+
+resource_id: software_integrations
+display_name: Paychex Flex Software Integrations
+type: text/html
+url: https://www.paychex.com/integrations
+
+resource_id: flex_onboarding_video
+display_name: Paychex Flex Onboarding Overview Video
+type: text/html
+url: https://www.youtube.com/watch?v=WObMcrnO91A
+
+resource_id: api_integration_guide
+display_name: How to Build a Paychex API Integration
+type: text/html
+url: https://rollout.com/integration-guides/paychex/reading-and-writing-data-using-the-paychex-api
+
+resource_id: importance_of_onboarding
+display_name: The Importance of an Employee Onboarding Process
+type: text/html
+url: https://www.paychex.com/articles/hcm/importance-of-onboarding-new-hires

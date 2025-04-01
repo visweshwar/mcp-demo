@@ -1,3 +1,5 @@
 jupyter
 ipykernel
 pip
+truststore
+certifi
