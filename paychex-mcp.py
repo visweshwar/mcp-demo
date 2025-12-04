@@ -4,7 +4,6 @@ from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.vectorstores import SKLearnVectorStore
 import os
 import truststore
-from pathlib import Path
 truststore.inject_into_ssl()
 
 # Define common path to the repo locally
@@ -86,9 +85,9 @@ def paychex_query_tool(query: str):
         print(f"Retrieved {len(relevant_docs)} relevant documents")
         formatted_context = "\n\n".join([f"==DOCUMENT {i+1}==\n{doc.page_content}" for i, doc in enumerate(relevant_docs)])
         return formatted_context
-    except ValueError as e:
-        # Security error (path traversal)
-        return f"Security error: {str(e)}"
+    except ValueError:
+        # Security error (path traversal) - don't expose details
+        return "Security error: Access denied"
     except FileNotFoundError:
         return "File access error: Required data file not found"
     except Exception as e:
@@ -114,9 +113,9 @@ def get_all_paychex_docs() -> str:
         
         with open(doc_path, 'r', encoding='utf-8') as file:
             return file.read()
-    except ValueError as e:
-        # Security error (path traversal detected)
-        return f"Security error: {str(e)}"
+    except ValueError:
+        # Security error (path traversal detected) - don't expose details
+        return "Security error: Access denied"
     except FileNotFoundError:
         return "File access error: Documentation file not found"
     except PermissionError:
