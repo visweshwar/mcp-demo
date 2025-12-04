@@ -34,12 +34,16 @@ def validate_path(file_path: str) -> str:
     # Resolve the full path
     full_path = os.path.normpath(os.path.realpath(os.path.join(BASE_PATH, file_path)))
     
-    # Use commonpath to ensure the path is within BASE_PATH
-    # This handles case-insensitive filesystems and symlinks properly
+    # Ensure the path is within BASE_PATH
+    # Use commonpath and startswith to handle all edge cases properly
     try:
         common = os.path.commonpath([BASE_PATH, full_path])
-        if common != BASE_PATH:
-            raise ValueError("Access denied: Path traversal detected")
+        # Check both that common path equals BASE_PATH and that full_path starts with BASE_PATH
+        # This handles case-insensitive filesystems, symlinks, and ensures path is truly within base
+        if common != BASE_PATH or not full_path.startswith(BASE_PATH + os.sep):
+            # Special case: if full_path equals BASE_PATH exactly, it's valid
+            if full_path != BASE_PATH:
+                raise ValueError("Access denied: Path traversal detected")
     except ValueError:
         # commonpath raises ValueError if paths are on different drives (Windows)
         raise ValueError("Access denied: Path traversal detected")
@@ -90,7 +94,7 @@ def paychex_query_tool(query: str):
         return "Security error: Access denied"
     except FileNotFoundError:
         return "File access error: Required data file not found"
-    except Exception as e:
+    except Exception:
         # Generic errors - don't expose internal details
         return "Configuration error: Unable to process query"
 
@@ -120,7 +124,7 @@ def get_all_paychex_docs() -> str:
         return "File access error: Documentation file not found"
     except PermissionError:
         return "File access error: Permission denied"
-    except Exception as e:
+    except Exception:
         # Generic errors - don't expose internal details
         return "Configuration error: Unable to read documentation"
 
