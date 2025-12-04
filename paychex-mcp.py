@@ -35,8 +35,14 @@ def validate_path(file_path: str) -> str:
     # Resolve the full path
     full_path = os.path.normpath(os.path.realpath(os.path.join(BASE_PATH, file_path)))
     
-    # Ensure the path is within BASE_PATH
-    if not full_path.startswith(BASE_PATH):
+    # Use commonpath to ensure the path is within BASE_PATH
+    # This handles case-insensitive filesystems and symlinks properly
+    try:
+        common = os.path.commonpath([BASE_PATH, full_path])
+        if common != BASE_PATH:
+            raise ValueError("Access denied: Path traversal detected")
+    except ValueError:
+        # commonpath raises ValueError if paths are on different drives (Windows)
         raise ValueError("Access denied: Path traversal detected")
     
     return full_path
@@ -81,10 +87,13 @@ def paychex_query_tool(query: str):
         formatted_context = "\n\n".join([f"==DOCUMENT {i+1}==\n{doc.page_content}" for i, doc in enumerate(relevant_docs)])
         return formatted_context
     except ValueError as e:
+        # Security error (path traversal)
         return f"Security error: {str(e)}"
+    except FileNotFoundError:
+        return "File access error: Required data file not found"
     except Exception as e:
-        # Security: Don't expose sensitive error details
-        return "Error processing query"
+        # Generic errors - don't expose internal details
+        return "Configuration error: Unable to process query"
 
 # The @mcp.resource() decorator is meant to map a URI pattern to a function that provides the resource content
 @mcp.resource("docs://paychex/full")
@@ -109,10 +118,12 @@ def get_all_paychex_docs() -> str:
         # Security error (path traversal detected)
         return f"Security error: {str(e)}"
     except FileNotFoundError:
-        return "Error: Documentation file not found"
+        return "File access error: Documentation file not found"
+    except PermissionError:
+        return "File access error: Permission denied"
     except Exception as e:
-        # Security: Don't expose sensitive error details
-        return "Error reading documentation file"
+        # Generic errors - don't expose internal details
+        return "Configuration error: Unable to read documentation"
 
 if __name__ == "__main__":
     # Initialize and run the server
